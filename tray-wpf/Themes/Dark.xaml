@@ -1,0 +1,18 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- 月之暗面 -->
+    <SolidColorBrush x:Key="AccentBrush" Color="#FF1A88FF"/>
+    <SolidColorBrush x:Key="WindowBgBrush" Color="#FF17191E"/>
+    <SolidColorBrush x:Key="CardBgBrush" Color="#FF23262D"/>
+    <SolidColorBrush x:Key="TextPrimaryBrush" Color="#FFF2F3F5"/>
+    <SolidColorBrush x:Key="TextSecondaryBrush" Color="#FF9AA0A8"/>
+    <SolidColorBrush x:Key="ProgressTrackBrush" Color="#FF3A3E47"/>
+    <SolidColorBrush x:Key="ButtonBgBrush" Color="#FF2C3039"/>
+    <SolidColorBrush x:Key="ButtonHoverBrush" Color="#FF3A404B"/>
+    <SolidColorBrush x:Key="BadgeBgBrush" Color="#FF3D2E1A"/>
+    <SolidColorBrush x:Key="BadgeFgBrush" Color="#FFF0A040"/>
+    <!-- 语义状态色：命中率/余额阈值标色（绿/黄/红） -->
+    <SolidColorBrush x:Key="SuccessBrush" Color="#FF34D399"/>
+    <SolidColorBrush x:Key="WarningBrush" Color="#FFFBBF24"/>
+    <SolidColorBrush x:Key="DangerBrush" Color="#FFF87171"/>
+</ResourceDictionary>

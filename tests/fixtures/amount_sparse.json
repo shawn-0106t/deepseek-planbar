@@ -1,0 +1,16 @@
+{
+  "data": {
+    "biz_data": {
+      "total": [
+        { "model": "deepseek-v4-pro" },
+        {
+          "model": "deepseek-v4-flash",
+          "usage": [
+            { "type": "RESPONSE_TOKEN" },
+            { "amount": "42" }
+          ]
+        }
+      ]
+    }
+  }
+}

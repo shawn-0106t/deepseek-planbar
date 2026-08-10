@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>DeepseekPlanbarTray</AssemblyName>
+    <RootNamespace>DeepseekPlanbarTray</RootNamespace>
+    <Version>1.0.0</Version>
+    <Description>DeepSeek 余额与用量托盘监控（非官方）</Description>
+    <!-- 显式锁定系统级 DPI 感知：Cursor.Position(物理像素) 与 WPF DIP 的换算
+         语义依赖此设置，缺失时行为由 OS 默认决定，高 DPI 下菜单坐标会漂移 -->
+    <ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="deepseek-logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- 内嵌登录窗（自动同步用量 Token）；运行时使用系统 Evergreen WebView2 Runtime -->
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.*" />
+  </ItemGroup>
+
+</Project>

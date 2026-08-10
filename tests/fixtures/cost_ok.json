@@ -1,0 +1,40 @@
+{
+  "data": {
+    "biz_data": [
+      {
+        "total": [
+          {
+            "model": "deepseek-v4-pro",
+            "usage": [
+              { "type": "PROMPT_CACHE_HIT_TOKEN", "amount": "0.25" },
+              { "type": "PROMPT_CACHE_MISS_TOKEN", "amount": "0.75" },
+              { "type": "RESPONSE_TOKEN", "amount": "1.50" },
+              { "type": "REQUEST", "amount": "99.00" }
+            ]
+          },
+          {
+            "model": "deepseek-v4-flash",
+            "usage": [
+              { "type": "PROMPT_CACHE_HIT_TOKEN", "amount": "0.10" },
+              { "type": "RESPONSE_TOKEN", "amount": "0.40" }
+            ]
+          }
+        ],
+        "days": [
+          {
+            "date": "@@TODAY@@",
+            "data": [
+              {
+                "model": "deepseek-v4-pro",
+                "usage": [
+                  { "type": "RESPONSE_TOKEN", "amount": "0.30" },
+                  { "type": "REQUEST", "amount": "5.00" }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+# Build output
+bin/
+obj/
+publish/
+publish-sc/
+
+# Credentials & cache — never commit
+credentials.json
+cache.json
+portable.dat
+
+# Internal working notes — kept local
+HANDOFF.md
+
+# Local screenshots / scratch
+shot*.png
