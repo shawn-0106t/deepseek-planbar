@@ -30,7 +30,7 @@ Windows 托盘应用，一眼看清 **DeepSeek 余额与 token 用量**——不
 
 用量 token 获取方式（两种）：
 
-- **应用内登录（推荐）**：设置 → "网页登录自动同步" → 在内嵌 WebView2 窗口中登录 DeepSeek（扫码/验证码/密码均可）。登录后自动捕获 token、调接口验证、保存——不用碰 F12。token 过期后再点一次即可。
+- **应用内登录（推荐）**：设置 → "Sign in via browser to sync (recommended)" → 在内嵌 WebView2 窗口中登录 DeepSeek（扫码/验证码/密码均可）。登录后自动捕获 token、调接口验证、保存——不用碰 F12。token 过期后再点一次即可。
 - **手动（永久兜底）**：浏览器登录 <https://platform.deepseek.com> → 按 `F12` → Console → 执行 `JSON.parse(localStorage.userToken).value` → 复制结果粘贴到设置。
 
 API Key 需手动填一次（长期有效；控制台里已有 Key 只显示掩码，无法从网页会话自动导入，已探测确认）。新值会先调真实接口验证，通过才保存；401 表示无效或已过期。

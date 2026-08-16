@@ -30,7 +30,7 @@ The panel auto-refreshes on a configurable interval (1/5/10/30 min), retries aft
 
 How to get the usage token — two ways:
 
-- **In-app login (recommended)**: Settings → "网页登录自动同步" → log in to DeepSeek in the embedded WebView2 window (QR code / SMS / password all work). The token is captured from the login session, verified against the usage endpoint, and saved automatically — no F12 needed. Repeat whenever the token expires.
+- **In-app login (recommended)**: Settings → "Sign in via browser to sync (recommended)" → log in to DeepSeek in the embedded WebView2 window (QR code / SMS / password all work). The token is captured from the login session, verified against the usage endpoint, and saved automatically — no F12 needed. Repeat whenever the token expires.
 - **Manual (always works)**: log in to <https://platform.deepseek.com> in your browser → press `F12` → Console → run `JSON.parse(localStorage.userToken).value` → copy the result into Settings.
 
 The API Key is entered manually once (it is long-lived; existing keys are only shown masked in the console, so they cannot be auto-imported from the web session). New values are verified against the real endpoints before being saved; a 401 means the value is invalid or expired.

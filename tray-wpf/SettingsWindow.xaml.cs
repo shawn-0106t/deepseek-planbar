@@ -28,8 +28,8 @@ public partial class SettingsWindow : Window
     private void ShowCredentialStatus()
     {
         var (apiKey, userToken) = DeepseekService.LoadCredentials();
-        ApiKeyStatus.Text = string.IsNullOrEmpty(apiKey) ? "未配置" : $"已配置 {Mask(apiKey)}（输入新值可替换）";
-        TokenStatus.Text = string.IsNullOrEmpty(userToken) ? "未配置" : $"已配置 {Mask(userToken)}（输入新值可替换）";
+        ApiKeyStatus.Text = string.IsNullOrEmpty(apiKey) ? "Not configured" : $"Configured {Mask(apiKey)} (enter a new value to replace)";
+        TokenStatus.Text = string.IsNullOrEmpty(userToken) ? "Not configured" : $"Configured {Mask(userToken)} (enter a new value to replace)";
         ApiKeyStatus.SetResourceReference(ForegroundProperty, "TextSecondaryBrush");
         TokenStatus.SetResourceReference(ForegroundProperty, "TextSecondaryBrush");
     }
@@ -63,7 +63,7 @@ public partial class SettingsWindow : Window
         if (newKey.Length > 0 || newToken.Length > 0)
         {
             SaveButton.IsEnabled = false;
-            SaveButton.Content = "验证中...";
+            SaveButton.Content = "Verifying...";
             try
             {
                 if (newKey.Length > 0)
@@ -72,7 +72,7 @@ public partial class SettingsWindow : Window
                     if (err == null)
                     {
                         DeepseekService.SaveCredentials(newKey, null);
-                        SetStatus(ApiKeyStatus, "已验证并保存", true);
+                        SetStatus(ApiKeyStatus, "Verified and saved", true);
                         ApiKeyBox.Clear();
                     }
                     else SetStatus(ApiKeyStatus, CredErrorText(err, "API Key"), false);
@@ -83,7 +83,7 @@ public partial class SettingsWindow : Window
                     if (err == null)
                     {
                         DeepseekService.SaveCredentials(null, newToken);
-                        SetStatus(TokenStatus, "已验证并保存", true);
+                        SetStatus(TokenStatus, "Verified and saved", true);
                         UserTokenBox.Clear();
                     }
                     else SetStatus(TokenStatus, CredErrorText(err, "Token"), false);
@@ -92,7 +92,7 @@ public partial class SettingsWindow : Window
             finally
             {
                 SaveButton.IsEnabled = true;
-                SaveButton.Content = "保存";
+                SaveButton.Content = "Save";
             }
         }
         _ = App.Deepseek.SafeRefresh();
@@ -107,11 +107,11 @@ public partial class SettingsWindow : Window
 
     private static string CredErrorText(string err, string what) => err switch
     {
-        "key-invalid" or "token-expired" => $"{what} 无效或已过期，未保存",
-        "network-error" => "网络错误，请检查网络后重试，未保存",
-        "rate-limited" => "请求过于频繁，请稍后重试，未保存",
-        "server-error" => "DeepSeek 服务端错误，请稍后重试，未保存",
-        _ => $"验证失败（{err}），未保存",
+        "key-invalid" or "token-expired" => $"{what} invalid or expired — not saved",
+        "network-error" => "Network error — check your connection and retry; not saved",
+        "rate-limited" => "Too many requests — try again later; not saved",
+        "server-error" => "DeepSeek server error — try again later; not saved",
+        _ => $"Verification failed ({err}); not saved",
     };
 
     private void ClearClick(object sender, RoutedEventArgs e)
@@ -120,8 +120,8 @@ public partial class SettingsWindow : Window
         ApiKeyBox.Clear();
         UserTokenBox.Clear();
         ShowCredentialStatus();
-        ApiKeyStatus.Text = "已清除";
-        TokenStatus.Text = "已清除";
+        ApiKeyStatus.Text = "Cleared";
+        TokenStatus.Text = "Cleared";
         _ = App.Deepseek.SafeRefresh();
     }
 
@@ -129,9 +129,9 @@ public partial class SettingsWindow : Window
     private async void CopyCmdClick(object sender, RoutedEventArgs e)
     {
         try { System.Windows.Clipboard.SetText("JSON.parse(localStorage.userToken).value"); } catch { }
-        CopyCmdButton.Content = "已复制，到浏览器 Console 粘贴执行";
+        CopyCmdButton.Content = "Copied — paste and run it in the browser Console";
         await Task.Delay(1500);
-        CopyCmdButton.Content = "复制 Console 命令";
+        CopyCmdButton.Content = "Copy Console Command";
     }
 
     // 网页登录自动同步：内嵌 WebView2 登录窗，登录成功即捕获+验证+保存用量 Token
@@ -141,7 +141,7 @@ public partial class SettingsWindow : Window
         w.TokenSynced += token =>
         {
             ShowCredentialStatus();
-            SetStatus(TokenStatus, "已通过网页登录同步并保存", true);
+            SetStatus(TokenStatus, "Synced and saved via web sign-in", true);
             _ = App.Deepseek.SafeRefresh();
         };
         w.Show();

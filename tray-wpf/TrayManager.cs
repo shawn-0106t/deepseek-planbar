@@ -48,24 +48,24 @@ public class TrayManager : IDisposable
         var l = App.Deepseek.Last;
         if (l == null) { _notify.Text = "DeepSeek Planbar"; return; }
         var bal = l.Balance != null
-            ? $"余额 {MainWindow.FmtMoney(l.Balance.Total, l.Balance.Currency)}" : "余额 ?";
+            ? $"Balance {MainWindow.FmtMoney(l.Balance.Total, l.Balance.Currency)}" : "Balance ?";
         var cost = l.Usage != null
-            ? $"本月 {MainWindow.FmtMoney(l.Usage.MonthCost, "CNY")}" : "本月 ?";
+            ? $"This month {MainWindow.FmtMoney(l.Usage.MonthCost, "CNY")}" : "This month ?";
         _notify.Text = $"DeepSeek {bal} · {cost}"
-                       + (l.HasError ? "（更新失败）" : "");
+                       + (l.HasError ? " (update failed)" : "");
         NotifyCredentialError(l);
     }
 
     // token 过期 / Key 失效时气泡提醒（仅状态翻转时弹一次；恢复正常后重置）
     private void NotifyCredentialError(DeepseekResult l)
     {
-        var err = l.UsageError == "token-expired" ? "用量 Token 已过期"
-                : l.BalanceError == "key-invalid" ? "API Key 无效或已过期" : null;
+        var err = l.UsageError == "token-expired" ? "Usage token expired"
+                : l.BalanceError == "key-invalid" ? "API Key invalid or expired" : null;
         if (err == null) { _lastNotified = null; return; }
         if (err == _lastNotified) return;
         _lastNotified = err;
         _notify.BalloonTipTitle = "DeepSeek Planbar";
-        _notify.BalloonTipText = err + "，点击打开设置重新配置";
+        _notify.BalloonTipText = err + " — click to open Settings to reconfigure";
         _notify.ShowBalloonTip(5000);
     }
 

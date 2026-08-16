@@ -46,7 +46,7 @@ public partial class LoginWindow : Window
         {
             InitError = ex.Message;
             InitDone.TrySetResult(false);
-            SetStatus("加载失败：" + ex.Message + "（可改用手动粘贴 Token）", false);
+            SetStatus("Load failed: " + ex.Message + " (you can paste the token manually instead)", false);
         }
     }
 
@@ -125,21 +125,21 @@ public partial class LoginWindow : Window
         _verifying = true;
         try
         {
-            SetStatus("已捕获 Token，正在验证...", true);
+            SetStatus("Token captured — verifying...", true);
             var err = await DeepseekService.VerifyUserToken(token);
             if (_accepted) return;
             if (err == null)
             {
                 _accepted = true;
                 DeepseekService.SaveCredentials(null, token);
-                SetStatus("验证通过，已保存", true);
+                SetStatus("Verified and saved", true);
                 TokenSynced?.Invoke(token);
                 await Task.Delay(1000);
                 Close();
             }
             else
             {
-                SetStatus("捕获的 Token 未通过验证，请继续完成登录...", true);
+                SetStatus("Captured token failed verification — please finish signing in...", true);
             }
         }
         finally

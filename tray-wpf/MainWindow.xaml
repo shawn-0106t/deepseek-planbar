@@ -36,7 +36,7 @@
                     Padding="16" Margin="0,0,0,12">
                 <StackPanel>
                     <DockPanel>
-                        <TextBlock Text="账户余额" FontSize="13"
+                        <TextBlock Text="Account Balance" FontSize="13"
                                    Foreground="{DynamicResource TextSecondaryBrush}"/>
                         <TextBlock x:Name="BalanceStatus" Text="" FontSize="12"
                                    DockPanel.Dock="Right" HorizontalAlignment="Right"
@@ -64,11 +64,11 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Content="刷新" Style="{StaticResource ActionButton}"
+                <Button Grid.Column="0" Content="Refresh" Style="{StaticResource ActionButton}"
                         Click="RefreshClick" Margin="0,0,6,0"/>
-                <Button Grid.Column="1" Content="设置" Style="{StaticResource ActionButton}"
+                <Button Grid.Column="1" Content="Settings" Style="{StaticResource ActionButton}"
                         Click="SettingsClick" Margin="3,0"/>
-                <Button Grid.Column="2" Content="退出" Style="{StaticResource ActionButton}"
+                <Button Grid.Column="2" Content="Exit" Style="{StaticResource ActionButton}"
                         Click="ExitClick" Margin="6,0,0,0"/>
             </Grid>
         </Grid>

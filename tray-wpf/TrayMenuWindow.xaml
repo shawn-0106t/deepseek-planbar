@@ -12,10 +12,10 @@
             <DropShadowEffect BlurRadius="20" ShadowDepth="2" Opacity="0.3" Color="#000000"/>
         </Border.Effect>
         <StackPanel>
-            <Button Content="打开" Style="{StaticResource MenuItemButton}" Click="OpenClick"/>
-            <Button Content="刷新" Style="{StaticResource MenuItemButton}" Click="RefreshClick"/>
-            <Button Content="设置" Style="{StaticResource MenuItemButton}" Click="SettingsClick"/>
-            <Button Content="退出" Style="{StaticResource MenuItemButton}" Click="ExitClick"/>
+            <Button Content="Open" Style="{StaticResource MenuItemButton}" Click="OpenClick"/>
+            <Button Content="Refresh" Style="{StaticResource MenuItemButton}" Click="RefreshClick"/>
+            <Button Content="Settings" Style="{StaticResource MenuItemButton}" Click="SettingsClick"/>
+            <Button Content="Exit" Style="{StaticResource MenuItemButton}" Click="ExitClick"/>
         </StackPanel>
     </Border>
 </Window>

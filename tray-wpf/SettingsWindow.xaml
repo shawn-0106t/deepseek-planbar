@@ -20,7 +20,7 @@
             <DockPanel Grid.Row="0" Margin="2,0,2,16" MouseLeftButtonDown="TitleBarDrag">
                 <Image Source="pack://application:,,,/deepseek-logo.png" Width="18" Height="18"
                        DockPanel.Dock="Left"/>
-                <TextBlock Text="DeepSeek Planbar 设置" FontSize="15" FontWeight="SemiBold"
+                <TextBlock Text="DeepSeek Planbar Settings" FontSize="15" FontWeight="SemiBold"
                            Foreground="{DynamicResource TextPrimaryBrush}"
                            VerticalAlignment="Center" Margin="10,0,0,0"/>
                 <Button Content="✕" Style="{StaticResource ChromeCloseButton}"
@@ -32,50 +32,50 @@
                            Foreground="{DynamicResource TextSecondaryBrush}"/>
                 <PasswordBox x:Name="ApiKeyBox" Style="{StaticResource ThemedPasswordBox}"
                              Margin="0,8,0,0"/>
-                <TextBlock Text="platform.deepseek.com 控制台创建，仅用于查询余额；验证通过才会保存"
+                <TextBlock Text="Created in the platform.deepseek.com console; used only to query balance. Saved only after verification passes."
                            FontSize="11" TextWrapping="Wrap" Margin="0,6,0,0"
                            Foreground="{DynamicResource TextSecondaryBrush}"/>
                 <TextBlock x:Name="ApiKeyStatus" Text="" FontSize="11" TextWrapping="Wrap"
                            Margin="0,4,0,0" Foreground="{DynamicResource TextSecondaryBrush}"/>
 
-                <TextBlock Text="用量 Token" FontSize="13" FontWeight="SemiBold" Margin="0,18,0,0"
+                <TextBlock Text="Usage Token" FontSize="13" FontWeight="SemiBold" Margin="0,18,0,0"
                            Foreground="{DynamicResource TextSecondaryBrush}"/>
                 <PasswordBox x:Name="UserTokenBox" Style="{StaticResource ThemedPasswordBox}"
                              Margin="0,8,0,0"/>
-                <TextBlock Text="获取方式：浏览器登录 platform.deepseek.com → 按 F12 → Console → 粘贴执行（点下方按钮复制命令）→ 把输出结果粘贴到上面的输入框"
+                <TextBlock Text="How to get it: sign in at platform.deepseek.com in your browser → press F12 → Console → paste and run the command (use the button below to copy it) → paste the output into the box above"
                            FontSize="11" TextWrapping="Wrap" Margin="0,6,0,0"
                            Foreground="{DynamicResource TextSecondaryBrush}"/>
-                <Button x:Name="CopyCmdButton" Content="复制 Console 命令"
+                <Button x:Name="CopyCmdButton" Content="Copy Console Command"
                         Style="{StaticResource ActionButton}" Margin="0,6,0,0"
                         Click="CopyCmdClick"/>
                 <TextBlock x:Name="TokenStatus" Text="" FontSize="11" TextWrapping="Wrap"
                            Margin="0,4,0,0" Foreground="{DynamicResource TextSecondaryBrush}"/>
-                <Button Content="网页登录自动同步（推荐）" Style="{StaticResource ActionButton}"
+                <Button Content="Sign in via browser to sync (recommended)" Style="{StaticResource ActionButton}"
                         Margin="0,8,0,0" Click="SyncClick"/>
 
-                <TextBlock Text="主题" FontSize="13" FontWeight="SemiBold" Margin="0,18,0,0"
+                <TextBlock Text="Theme" FontSize="13" FontWeight="SemiBold" Margin="0,18,0,0"
                            Foreground="{DynamicResource TextSecondaryBrush}"/>
-                <RadioButton x:Name="ThemeSystem" Content="跟随系统" Margin="0,10,0,0"
+                <RadioButton x:Name="ThemeSystem" Content="Follow system" Margin="0,10,0,0"
                              GroupName="theme" Style="{StaticResource ThemeRadio}"/>
-                <RadioButton x:Name="ThemeLight" Content="月之亮面" Margin="0,8,0,0"
+                <RadioButton x:Name="ThemeLight" Content="Light" Margin="0,8,0,0"
                              GroupName="theme" Style="{StaticResource ThemeRadio}"/>
-                <RadioButton x:Name="ThemeDark" Content="月之暗面" Margin="0,8,0,0"
+                <RadioButton x:Name="ThemeDark" Content="Dark" Margin="0,8,0,0"
                              GroupName="theme" Style="{StaticResource ThemeRadio}"/>
 
-                <TextBlock Text="刷新间隔" FontSize="13" FontWeight="SemiBold" Margin="0,18,0,0"
+                <TextBlock Text="Refresh Interval" FontSize="13" FontWeight="SemiBold" Margin="0,18,0,0"
                            Foreground="{DynamicResource TextSecondaryBrush}"/>
                 <StackPanel x:Name="IntervalPanel" Orientation="Horizontal" Margin="0,10,0,0">
-                    <RadioButton Content="1 分钟" Tag="1" GroupName="interval"
+                    <RadioButton Content="1 min" Tag="1" GroupName="interval"
                                  Style="{StaticResource PillRadio}" Margin="0,0,6,0"/>
-                    <RadioButton Content="5 分钟" Tag="5" GroupName="interval" IsChecked="True"
+                    <RadioButton Content="5 min" Tag="5" GroupName="interval" IsChecked="True"
                                  Style="{StaticResource PillRadio}" Margin="0,0,6,0"/>
-                    <RadioButton Content="10 分钟" Tag="10" GroupName="interval"
+                    <RadioButton Content="10 min" Tag="10" GroupName="interval"
                                  Style="{StaticResource PillRadio}" Margin="0,0,6,0"/>
-                    <RadioButton Content="30 分钟" Tag="30" GroupName="interval"
+                    <RadioButton Content="30 min" Tag="30" GroupName="interval"
                                  Style="{StaticResource PillRadio}"/>
                 </StackPanel>
 
-                <CheckBox x:Name="AutoStartBox" Content="开机自动启动" Margin="0,20,0,0"
+                <CheckBox x:Name="AutoStartBox" Content="Launch at startup" Margin="0,20,0,0"
                           Style="{StaticResource ThemeCheckBox}"/>
 
                 <Grid Margin="0,22,0,0">
@@ -83,9 +83,9 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" x:Name="SaveButton" Content="保存"
+                    <Button Grid.Column="0" x:Name="SaveButton" Content="Save"
                             Style="{StaticResource ActionButton}" Click="SaveClick" Margin="0,0,6,0"/>
-                    <Button Grid.Column="1" Content="清除凭证"
+                    <Button Grid.Column="1" Content="Clear Credentials"
                             Style="{StaticResource ActionButton}" Click="ClearClick" Margin="6,0,0,0"/>
                 </Grid>
             </StackPanel>

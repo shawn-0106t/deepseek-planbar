@@ -93,8 +93,8 @@ public partial class MainWindow : Window
         RenderBalance(r);
         RenderUsage(r);
         LastUpdated.Text = r == null ? ""
-            : r.HasError ? "更新失败"
-            : $"更新于 {r.FetchedAt.LocalDateTime:HH:mm}";
+            : r.HasError ? "Update failed"
+            : $"Updated {r.FetchedAt.LocalDateTime:HH:mm}";
     }
 
     private void RenderBalance(DeepseekResult? r)
@@ -107,9 +107,9 @@ public partial class MainWindow : Window
             BalanceStatus.Text = r?.BalanceError switch
             {
                 null => "",
-                "no-api-key" => "未配置 API Key（在设置中填写）",
-                "key-invalid" => "API Key 无效或已过期",
-                _ => "更新失败",
+                "no-api-key" => "API Key not configured (add it in Settings)",
+                "key-invalid" => "API Key invalid or expired",
+                _ => "Update failed",
             };
             BalanceStatus.SetResourceReference(ForegroundProperty,
                 r?.BalanceError == null ? "TextSecondaryBrush" : "WarningBrush");
@@ -120,8 +120,8 @@ public partial class MainWindow : Window
         // 余额低标红；is_available=false 同样告警
         BalanceTotal.SetResourceReference(ForegroundProperty,
             !b.IsAvailable || b.Total < LowBalanceThreshold ? "DangerBrush" : "TextPrimaryBrush");
-        BalanceDetail.Text = $"赠送 {FmtMoney(b.Granted, b.Currency)} · 充值 {FmtMoney(b.ToppedUp, b.Currency)}";
-        BalanceStatus.Text = b.IsAvailable ? "可用" : "余额不足";
+        BalanceDetail.Text = $"Granted {FmtMoney(b.Granted, b.Currency)} · Topped up {FmtMoney(b.ToppedUp, b.Currency)}";
+        BalanceStatus.Text = b.IsAvailable ? "Available" : "Insufficient balance";
         BalanceStatus.SetResourceReference(ForegroundProperty,
             b.IsAvailable ? "SuccessBrush" : "DangerBrush");
     }
@@ -135,9 +135,9 @@ public partial class MainWindow : Window
             var hint = r?.UsageError switch
             {
                 null => null,
-                "no-user-token" => "未配置用量 Token：打开设置，按指引粘贴浏览器 userToken",
-                "token-expired" => "用量 Token 已过期：打开设置，按 F12 指引重新获取",
-                _ => "用量更新失败",
+                "no-user-token" => "Usage token not configured: open Settings and paste your browser userToken as instructed",
+                "token-expired" => "Usage token expired: open Settings and follow the F12 steps to get a new one",
+                _ => "Usage update failed",
             };
             if (hint != null) ModelCards.Children.Add(MakeHintCard(hint));
             return;
@@ -153,10 +153,10 @@ public partial class MainWindow : Window
         foreach (var m in models)
             ModelCards.Children.Add(MakeModelCard(m, maxTokens));
         if (models.Count == 0)
-            ModelCards.Children.Add(MakeHintCard("本月暂无用量数据"));
+            ModelCards.Children.Add(MakeHintCard("No usage data this month"));
         UsageSummary.Text =
-            $"合计：本月 {FmtMoney(u.MonthCost, "CNY")} / {FmtTokens(u.MonthTokens)} tokens" +
-            $" · 今日 {FmtMoney(u.TodayCost, "CNY")} / {FmtTokens(u.TodayTokens)} tokens";
+            $"Total: this month {FmtMoney(u.MonthCost, "CNY")} / {FmtTokens(u.MonthTokens)} tokens" +
+            $" · today {FmtMoney(u.TodayCost, "CNY")} / {FmtTokens(u.TodayTokens)} tokens";
     }
 
     // 单模型卡：名称+本月消费 / 本月 token+请求数 / 相对进度条 / 命中率+今日消耗
@@ -183,7 +183,7 @@ public partial class MainWindow : Window
 
         var tokens = new TextBlock
         {
-            Text = $"本月 {FmtTokens(m.MonthTokens)} tokens · 请求 {FmtTokens(m.MonthRequests)} 次",
+            Text = $"This month {FmtTokens(m.MonthTokens)} tokens · {FmtTokens(m.MonthRequests)} requests",
             FontSize = 11,
             Margin = new Thickness(0, 10, 0, 10),
         };
@@ -207,17 +207,17 @@ public partial class MainWindow : Window
         var hit = new TextBlock { FontSize = 11 };
         if (m.CacheHitRate.HasValue)
         {
-            hit.Text = $"命中率 {m.CacheHitRate.Value:0.#}%";
+            hit.Text = $"Cache hit {m.CacheHitRate.Value:0.#}%";
             hit.SetResourceReference(TextBlock.ForegroundProperty, HitRateBrush(m.CacheHitRate.Value));
         }
         else
         {
-            hit.Text = "命中率 --";
+            hit.Text = "Cache hit --";
             hit.SetResourceReference(TextBlock.ForegroundProperty, "TextSecondaryBrush");
         }
         var today = new TextBlock
         {
-            Text = $"今日 {FmtMoney(m.TodayCost, "CNY")} / {FmtTokens(m.TodayTokens)}",
+            Text = $"Today {FmtMoney(m.TodayCost, "CNY")} / {FmtTokens(m.TodayTokens)}",
             FontSize = 11,
             HorizontalAlignment = System.Windows.HorizontalAlignment.Right,
         };
